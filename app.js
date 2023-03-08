@@ -1,6 +1,7 @@
 'use strict';
 
 
+const allemplyee=[];
 
 function HrSystem(employeeId, fullName, department, level, imageUrl) {
     this.employeeId = employeeId;
@@ -8,6 +9,8 @@ function HrSystem(employeeId, fullName, department, level, imageUrl) {
     this.department = department;
     this.level = level;
     this.imageUrl = imageUrl;
+    this.salary = this.netSalary();
+    allemplyee.push(this);
 }
 
 HrSystem.prototype.ranSalary = function () {
@@ -40,10 +43,19 @@ let ranaSaleh = new HrSystem(1005, " Rana Saleh ", "Development", "Junior");
 let hadiAhmad = new HrSystem(1006, " Hadi Ahmad ", "Finance", "Mid-Senior");
 
 
-ghaziSamer.renderHomePage();
-lanaAli.renderHomePage();
-tamaraAyoub.renderHomePage();
-safiWalid.renderHomePage();
-omarZaid.renderHomePage();
-ranaSaleh.renderHomePage();
-hadiAhmad.renderHomePage();
+
+
+
+allemplyeeCaller(allemplyee);
+
+console.log(allemplyee)
+
+
+function allemplyeeCaller(allemplyee){
+    
+    for (let i = 0; i < allemplyee.length ; i++) {
+        allemplyee[i].renderHomePage();   
+    }
+}
+
+
