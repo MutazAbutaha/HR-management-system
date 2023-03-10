@@ -1,0 +1,35 @@
+nav ul li {
+    display: inline-block;
+    padding: 3% 13.5%;
+    font-family: 'Righteous', cursive;
+}
+
+ul,
+#cr {
+    
+    background-color: rgb(1, 74, 77);
+}
+
+a {
+    color: #ffffff;
+    font-family: 'Righteous', cursive;
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #dceef1c3;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+}
+
+#cr {
+    color: #ffffff;
+    margin-top: 75px;
+    text-align: center;
+    font-family: 'Righteous', cursive;
+}
