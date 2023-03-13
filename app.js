@@ -7,8 +7,8 @@ let container = document.getElementById("card-container");
 
 
 
-function HrSystem(employeeId, fullName, department, level, imageUrl) {
-    this.employeeId = employeeId;
+function HrSystem( fullName, department, level, imageUrl) {
+    this.employeeId = this.uniqueId();
     this.fullName = fullName;
     this.department = department;
     this.level = level;
@@ -29,9 +29,12 @@ HrSystem.prototype.ranSalary = function () {
 
 
 HrSystem.prototype.netSalary = function () {
-    return (this.ranSalary()) - (this.ranSalary() * 0.075)
+    return  (this.ranSalary()) - (this.ranSalary() * 0.075);
 }
 
+HrSystem.prototype.uniqueId = function() {
+    return  (Math.floor(Math.random() * 10000))
+}
 
 
 HrSystem.prototype.renderHomePage = function () {
@@ -50,19 +53,21 @@ HrSystem.prototype.renderHomePage = function () {
 
 
 
-let ghaziSamer = new HrSystem(1000, " Ghazi Samer ", "Administration", "Senior", "./assets/Ghazi.jpg");
-let lanaAli = new HrSystem(1001, " Lana Ali ", "Finance", "Senior", "./assets/Lana.jpg");
-let tamaraAyoub = new HrSystem(1002, " Tamara Ayoub ", "Marketing", "Senior", "./assets/Tamara.jpg");
-let safiWalid = new HrSystem(1003, " Safi Walid ", "Administration", "Mid-Senior", "./assets/Safi.jpg");
-let omarZaid = new HrSystem(1004, " Omar Zaid ", "Development", "Senior", "./assets/Omar.jpg");
-let ranaSaleh = new HrSystem(1005, " Rana Saleh ", "Development", "Junior", "./assets/Rana.jpg");
-let hadiAhmad = new HrSystem(1006, " Hadi Ahmad ", "Finance", "Mid-Senior", "./assets/Hadi.jpg");
+let ghaziSamer = new HrSystem( " Ghazi Samer ", "Administration", "Senior", "./assets/Ghazi.jpg");
+let lanaAli = new HrSystem( " Lana Ali ", "Finance", "Senior", "./assets/Lana.jpg");
+let tamaraAyoub = new HrSystem( " Tamara Ayoub ", "Marketing", "Senior", "./assets/Tamara.jpg");
+let safiWalid = new HrSystem( " Safi Walid ", "Administration", "Mid-Senior", "./assets/Safi.jpg");
+let omarZaid = new HrSystem( " Omar Zaid ", "Development", "Senior", "./assets/Omar.jpg");
+let ranaSaleh = new HrSystem( " Rana Saleh ", "Development", "Junior", "./assets/Rana.jpg");
+let hadiAhmad = new HrSystem( " Hadi Ahmad ", "Finance", "Mid-Senior", "./assets/Hadi.jpg");
 
 
 
 
 
 allemplyeeCaller(allemplyee);
+form.addEventListener("submit", eventHandler);
+
 
 
 function allemplyeeCaller(allemplyee) {
@@ -72,41 +77,17 @@ function allemplyeeCaller(allemplyee) {
     }
 }
 
-
-
-form.addEventListener("submit", eventHandler);
-
-function uniqueId () {
-    return (Math.floor(Math.random() * 10000))
-}
-
-
-
 function eventHandler(event) {
     event.preventDefault();
     let fullName = (event.target.fullname.value);
-    let Department = (document.getElementById("depart").value);
-    let Level = (document.getElementById("level").value);
+    let Department = (event.target.depart.value);
+    let Level = (event.target.level.value);
     let ImageUrl = (event.target.img.value);
-    function netSalaryForm () {
-    if (Level == 'Senior') {
-        return ((Math.floor(Math.random() * (2000 - 1500)) + 1500) * 0.925)
-    } else if (Level == 'Mid-Senior') {
-        return ((Math.floor(Math.random() * (1500 - 1000)) + 1000) * 0.925)
-    }else if (Level == 'Junior') {
-        return ((Math.floor(Math.random() * (1000 - 500)) + 500) * 0.925)
-    }
-    }
-    console.log(fullName, Department, Level, ImageUrl)
-    const div = document.createElement("div");
-    div.innerHTML = `
-    <div class="card">
-    <img src="${ImageUrl}" alt="img">
-    <p>NAME: ${fullName} - Id: ${uniqueId()} - Department: ${Department} - Level: ${Level} - ${netSalaryForm()}</p>
-    </div>`;
+    let emplyeeForm = new HrSystem(fullName, Department, Level , ImageUrl);
 
-    container.appendChild(div);
-
+    console.log(fullName, Department, Level, ImageUrl);
+    emplyeeForm.renderHomePage();
+    
 }
 
 
