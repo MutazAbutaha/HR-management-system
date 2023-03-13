@@ -11,3 +11,7 @@ Lab 08
 2. Create function to generate Id Number .
 3. Refactor the render prototype function to render each employee information in a separate card in the home page.
 4. Style Home page .
+
+Lab 09 
+1. Save all the employees in the Local Storage so when I refresh the page I will not lose my old data.
+2. Create a Table of Employee informations .

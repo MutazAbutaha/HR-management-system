@@ -4,7 +4,7 @@
 const allemplyee = [];
 let form = document.getElementById("form");
 let container = document.getElementById("card-container");
-
+let newEmplyees = [];
 
 
 function HrSystem( fullName, department, level, imageUrl) {
@@ -63,20 +63,7 @@ let hadiAhmad = new HrSystem( " Hadi Ahmad ", "Finance", "Mid-Senior", "./assets
 
 
 
-
-
-allemplyeeCaller(allemplyee);
 form.addEventListener("submit", eventHandler);
-
-
-
-function allemplyeeCaller(allemplyee) {
-
-    for (let i = 0; i < allemplyee.length; i++) {
-        allemplyee[i].renderHomePage();
-    }
-}
-
 function eventHandler(event) {
     event.preventDefault();
     let fullName = (event.target.fullname.value);
@@ -87,11 +74,37 @@ function eventHandler(event) {
 
     console.log(fullName, Department, Level, ImageUrl);
     emplyeeForm.renderHomePage();
+    console.log(allemplyee);
+    saveData(allemplyee);
     
 }
 
 
+function allemplyeeCaller() {
 
+    for (let i = 0; i < allemplyee.length; i++) {
+        allemplyee[i].renderHomePage();
+    }
+}
+
+
+function saveData (data) {
+    let stringArr = JSON.stringify(data);
+    localStorage.setItem('Hrsystem' ,stringArr);
+}
+
+function getData () {
+    let getedArr = localStorage.getItem('Hrsystem');
+    let objArr = JSON.parse(getedArr);
+    
+    if (objArr != null){
+        for (let i = allemplyee.length ; i < objArr.length; i++) {
+        new HrSystem (objArr[i].fullName, objArr[i].department, objArr[i].level, objArr[i].imageUrl);
+    } 
+    }
+    allemplyeeCaller();
+}
+getData();
 
 
 
